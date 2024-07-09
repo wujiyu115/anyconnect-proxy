@@ -6,6 +6,8 @@ RUN set -eux; \
 		curl \
 		ocproxy \
 		openconnect \
+		telnet \
+		net-tools \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
