@@ -2,6 +2,11 @@
 
 set -e
 
-echo $VPN_PASSWORD | openconnect --user=$VPN_USER $OPENCONNECT_OPTIONS --passwd-on-stdin --csd-wrapper=/usr/libexec/openconnect/csd-wrapper.sh --script-tun --script "ocproxy -g -k 60 -D 9052" --os=linux-64 $VPN_HOST
+run () {
+    echo $VPN_PASSWORD | openconnect --user=$VPN_USER $OPENCONNECT_OPTIONS --passwd-on-stdin --script-tun --script "ocproxy -g -k 60 -D 9052" $VPN_HOST
+}
 
-exec "$@"
+until (run); do
+  echo "openconnect exited. Restarting process in 60 seconds…" >&2
+  sleep 60
+done

@@ -8,6 +8,7 @@ RUN set -eux; \
 		openconnect \
 		telnet \
 		net-tools \
+		iputils-ping \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
