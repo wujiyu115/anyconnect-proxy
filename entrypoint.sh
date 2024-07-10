@@ -3,7 +3,8 @@
 set -e
 
 run () {
-    echo $VPN_PASSWORD | openconnect --user=$VPN_USER $OPENCONNECT_OPTIONS --passwd-on-stdin --script-tun --script "ocproxy -g -k 60 -D 9052" $VPN_HOST
+    echo openconnect start
+    echo $VPN_PASSWORD | openconnect --user=$VPN_USER $OPENCONNECT_OPTIONS --passwd-on-stdin --script-tun --script "ocproxy -D 9052" $VPN_HOST
 }
 
 until (run); do
